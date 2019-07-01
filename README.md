@@ -5,6 +5,14 @@ Token authentication, to not allow access to some routes.
 This project is developed using PHP 7.2.19, Apache2 and MySql.
 All entities of the project are mapped using Doctrine ORM.
 
+## Set it up
+- use **doc/backend.conf** file to set in apache2 the website
+- run `composer install`
+- set database configuration in *.env* file 
+- create test database `php bin/console doctrine:database:create`
+- execute migrations: `php bin/console doctrine:migration:migrate`
+- load fixtures: `php bin/console doctrine:fixtures:load` containing two users, with valid tokens
+
 ## Implementation
 Access permissions to routes are controlled by Symfony security package configuration in **config/package/security.yml* *
 file and thought the custom implementation of the class **App\Security\TokenAuthentication** that extends Symfony mechanism
@@ -69,12 +77,6 @@ password' => 'password',
     "userIds": [1,2,3]
  }
 ```
-## Set it up
-- run `composer install`
-- set database configuration in *.env* file 
-- create test database `php bin/console doctrine:database:create`
-- execute migrations: `php bin/console doctrine:migration:migrate`
-- load fixtures: `php bin/console doctrine:fixtures:load` containing two users, with valid tokens
 
 ## Tests
 - set test database configuration in *.env.test* file 
